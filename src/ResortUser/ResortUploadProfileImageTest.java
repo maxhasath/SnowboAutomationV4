@@ -1,4 +1,4 @@
-package TestCases;
+package ResortUser;
 
 import static org.testng.Assert.assertNotEquals;
 
@@ -7,26 +7,25 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import Element.Constant;
 import Element.ProductElements;
-import Framework.BrowserSetup;
 import Framework.UIActions;
+import TestCases.LoginTest;
 
-public class UploadCoverImageTest extends UIActions implements ProductElements{
+public class ResortUploadProfileImageTest extends UIActions implements ProductElements {
 
-	
-	LoginTest login;
+ResortLoginTest login;
 
 	
 	
 	WebDriverWait wait;
 	
 	@BeforeClass
-	public void SetupBrowser()
+	public void BeforeTest() throws InterruptedException
 	{
-	        login = new LoginTest();
-	       
+	        login = new ResortLoginTest();
+	        //this.browser = login.browser;
 	        this.wait = login.wait;
+	        login.login_Resort();
 	}
 	
 	
@@ -34,15 +33,15 @@ public class UploadCoverImageTest extends UIActions implements ProductElements{
 	public void statUpdate() throws Exception {
 		
 		
-		login.login_MP10327();
+		
 		click(dropdown);
-		click(myprofile);
+		click(ResortMyProfile);
 		waitForPageLoad();
-		WebElement imgElement = driver.findElement(Coverimage);
+		WebElement imgElement = driver.findElement(Rproimage);
 		String imgSrcValueBefore = imgElement.getAttribute("src");
-		sendKeys(CoverImageUpload, "C:\\Users\\iTelaSoft-User\\Downloads\\snowbo_images\\expected.jpg");
+		sendKeys(proimageUpload, "C:\\Users\\iTelaSoft-User\\Downloads\\snowbo_images\\expected.jpg");
 		waitForPageLoad();
-		WebElement imgElement1 = driver.findElement(Coverimage);
+		WebElement imgElement1 = driver.findElement(Rproimage);
 		String imgSrcValueAfter = imgElement1.getAttribute("src");
 		
 	    assertNotEquals(imgSrcValueBefore, imgSrcValueAfter);

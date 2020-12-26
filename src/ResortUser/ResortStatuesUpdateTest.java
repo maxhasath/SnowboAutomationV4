@@ -1,4 +1,4 @@
-package TestCases;
+package ResortUser;
 
 import static org.testng.Assert.assertTrue;
 
@@ -7,49 +7,45 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import Element.Constant;
 import Element.ProductElements;
-import Framework.BrowserSetup;
 import Framework.UIActions;
+import TestCases.LoginTest;
 
-public class StatusUpdateTest extends UIActions implements ProductElements {
-	
+public class ResortStatuesUpdateTest extends UIActions implements ProductElements{
 
+	ResortLoginTest login;
+	By postValue;
+	String RandomStatus = "";
 	
-	LoginTest login;
-	String postValue;
-	String randomValue = "";
-	By postval;
 	
 	WebDriverWait wait;
 	
 	@BeforeClass
 	public void SetupBrowser() throws InterruptedException
 	{
-	         login = new LoginTest();
+	         login = new ResortLoginTest();
 	       
 	        this.wait = login.wait;
-	        login.login_MP10327();
+	        login.login_Resort();
 	}
 	
 	
 	@Test
 	public void statusUpdate() throws Exception {
 		
+		RandomStatus =getRandomValue();
 		
-		
-		click(dropdown);
-		click(myprofile);
-		waitForPageLoad();
-		randomValue = getRandomValue();
-		postval = getSelector(randomValue);
-		sendKeys(Rstatus, randomValue);
+		sendKeys(Rstatus,RandomStatus );
 		click(ResortStatusSend);
 		waitForPageLoad();
-		assertTrue(elementExists(postval));
-		click(newsfeed);
+		postValue = getSelector(RandomStatus);
+		assertTrue(elementExists(postValue));
+		click(dropdown);
+		
+		click(ResortMyProfile);
 		waitForPageLoad();
-		assertTrue(elementExists(postval));
+		assertTrue(elementExists(postValue));
+
 		
 		
 		
@@ -60,7 +56,4 @@ public class StatusUpdateTest extends UIActions implements ProductElements {
 	
 	
 	
-	
-	
-
 }

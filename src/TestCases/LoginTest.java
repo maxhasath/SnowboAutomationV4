@@ -25,7 +25,7 @@ public class LoginTest extends UIActions implements ProductElements {
 		wait = new WebDriverWait(driver, 30);
 	}
 
-	@Test(priority = 4)
+	@Test
 	public void login_MP10327() throws InterruptedException {
 
 		waitForPageLoad();
@@ -34,6 +34,7 @@ public class LoginTest extends UIActions implements ProductElements {
 		click(NewsLetterClose);
 
 		click(LoginEmail);
+		
 		sendKeys(EmailField, Constant.InstructorEmail);
 		sendKeys(PasswordFiled, Constant.InstructorPassword);
 		click(LoginButton);

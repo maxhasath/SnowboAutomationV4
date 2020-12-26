@@ -3,7 +3,6 @@ package ResortUser;
 import static org.testng.Assert.assertTrue;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.remote.server.handler.SendKeys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
@@ -12,18 +11,17 @@ import org.testng.annotations.Test;
 import Element.Constant;
 import Element.ProductElements;
 import Framework.UIActions;
-import TestCases.LoginTest;
 
-public class PostAccomodationTest extends UIActions implements ProductElements {
-	
+public class PostDealTest extends UIActions implements ProductElements{
+
 	ResortLoginTest login;
 	 WebDriverWait wait;
-	String accomodationTitle ="";
+	String DealTitleValue ="";
 	By accoValue;
 	
 	
 	@BeforeClass
-	public void SetupBrowser() throws InterruptedException
+	public void beforeTest() throws InterruptedException
 	{
 	        login = new ResortLoginTest();
 	        //this.browser = login.browser;
@@ -33,29 +31,31 @@ public class PostAccomodationTest extends UIActions implements ProductElements {
 	
 	
 	@Test
-	public void addAccommodation() throws Exception {
+	public void PostTravel() throws Exception {
 		
 		
 		click(dropdown);
 		click(ResortMyProfile);
-		click(Accotab);
-		wait.until(ExpectedConditions.visibilityOf(locateElement(AddAcco)));
-		click(AddAcco);
+		click(DealsTab);
+		wait.until(ExpectedConditions.visibilityOf(locateElement(AddDeal)));
+		click(AddDeal);
 		waitForPageLoad();
-		accomodationTitle = getRandomValue();
-		sendKeys(AccoTitle, accomodationTitle);
-		selectDropdown(AccoCategory, 2);
-		selectDropdown(Accotype, 2);
-		sendKeys(Tags,"abcd");
-		click(TagValue);
-		sendKeys(Booklink, "ewfwefwef");
-		sendKeys(AccoLocation, Constant.Location);
+		DealTitleValue = getRandomValue();
+		sendKeys(DealTitle, DealTitleValue);
+		selectDropdown(DealCat,0);
+		//selectDropdown(Accotype, 2);
+		//sendKeys(Tags,"abcd");
+		//click(TagValue);
+		sendKeys(DealApplyLink, "www.tours.com");
+		//sendKeys(AccoLocation, Constant.Location);
 		sendKeys(StreetAddress, "ovel");
-		sendKeys(Accosub, "adeled");
+		
 		sendKeys(state, "stateLess");
-		sendKeys(AccoDes, "des");
-		sendKeys(AccoIncludes, "ink");
-		sendKeys(AccoOptions, "op");
+		
+	
+		sendKeys(DealDes, "3");
+		sendKeys(DealIncludes, "300");
+		
 		sendKeys(ImagePost, "C:\\\\Users\\\\iTelaSoft-User\\\\Downloads\\\\snowbo_images\\\\6.jpg");
 		sendKeys(AccoVideo, "https://www.youtube.com/watch?v=VGPi1zWtdeA");
 		click(SelectPlan);
@@ -63,9 +63,9 @@ public class PostAccomodationTest extends UIActions implements ProductElements {
 		click(freePlan);
 		click(SaveAcco);
 		waitForPageLoad();
-		accoValue = getSelector(accomodationTitle);
+		accoValue = getSelector(DealTitleValue);
 		assertTrue(elementExists(accoValue));
-		click(Accotab);
+		click(DealsTab);
 		waitForPageLoad();
 		assertTrue(elementExists(accoValue));
 		click(newsfeed);
@@ -73,19 +73,15 @@ public class PostAccomodationTest extends UIActions implements ProductElements {
 		
 		
 		
-		
-		
+	
 		
 		
 	}
 	
 	
 	
-	
-	
-	
-	
-	
-	
 
+	
+	
+	
 }

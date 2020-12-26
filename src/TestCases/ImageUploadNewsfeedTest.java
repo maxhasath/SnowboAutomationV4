@@ -21,7 +21,7 @@ public class ImageUploadNewsfeedTest extends UIActions implements ProductElement
 	LoginTest login;
 	By image;
 	// holds current user`s username
-	String usernameText = "";
+	String usernameText ;
 	// holds image unique server given image src value
 	String imageSrc = "";
 
@@ -51,7 +51,8 @@ public class ImageUploadNewsfeedTest extends UIActions implements ProductElement
 		if (newsFeeds.size() > 0) {
 			// 5. pick the first post to find image src
 			imageSrc = newsFeeds.get(0).findElement(By.xpath(".//div/div[2]/div/div/a/img")).getAttribute("src");
-
+			
+			//div[1]/div/div[2]/div[contains(@class, 'news-pkg')]/a
 			System.out.println("imageSrc : " + imageSrc);
 
 			// 6. move to my profile page
@@ -66,7 +67,8 @@ public class ImageUploadNewsfeedTest extends UIActions implements ProductElement
 
 			// 8. check image on activity list
 			assertNotNull(locateElement(By.xpath(
-					".//*[@id='activity-feed']/div/div[div[1]/div[3]/a/img[@src='" + splitString(imageSrc) + "']]")));
+					".//*[@id='activity-feed']/div/div[div[1]/div[3]/a/img["
+					+ "@src='" + splitString(imageSrc) + "']]")));
 		} else {
 			System.out.println("No Elements found : problem with upload function");
 		}

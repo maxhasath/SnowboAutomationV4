@@ -3,7 +3,6 @@ package ResortUser;
 import static org.testng.Assert.assertTrue;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.remote.server.handler.SendKeys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
@@ -12,13 +11,12 @@ import org.testng.annotations.Test;
 import Element.Constant;
 import Element.ProductElements;
 import Framework.UIActions;
-import TestCases.LoginTest;
 
-public class PostAccomodationTest extends UIActions implements ProductElements {
+public class PostTourTest extends UIActions implements ProductElements {
 	
 	ResortLoginTest login;
 	 WebDriverWait wait;
-	String accomodationTitle ="";
+	String TourTitleValue ="";
 	By accoValue;
 	
 	
@@ -33,29 +31,33 @@ public class PostAccomodationTest extends UIActions implements ProductElements {
 	
 	
 	@Test
-	public void addAccommodation() throws Exception {
+	public void PostTours() throws Exception {
 		
 		
 		click(dropdown);
 		click(ResortMyProfile);
-		click(Accotab);
-		wait.until(ExpectedConditions.visibilityOf(locateElement(AddAcco)));
-		click(AddAcco);
+		click(ToursTab);
+		wait.until(ExpectedConditions.visibilityOf(locateElement(AddTour)));
+		click(AddTour);
 		waitForPageLoad();
-		accomodationTitle = getRandomValue();
-		sendKeys(AccoTitle, accomodationTitle);
-		selectDropdown(AccoCategory, 2);
-		selectDropdown(Accotype, 2);
-		sendKeys(Tags,"abcd");
-		click(TagValue);
-		sendKeys(Booklink, "ewfwefwef");
+		TourTitleValue = getRandomValue();
+		sendKeys(TourTitle, TourTitleValue);
+		selectDropdown(JobCat,1);
+		//selectDropdown(Accotype, 2);
+		//sendKeys(Tags,"abcd");
+		//click(TagValue);
+		sendKeys(TourApplyNow, "www.tours.com");
 		sendKeys(AccoLocation, Constant.Location);
 		sendKeys(StreetAddress, "ovel");
 		sendKeys(Accosub, "adeled");
 		sendKeys(state, "stateLess");
-		sendKeys(AccoDes, "des");
-		sendKeys(AccoIncludes, "ink");
-		sendKeys(AccoOptions, "op");
+		sendKeys(TourPrice, "300");
+		sendKeys(TourDuration, "3");
+		selectDropdown(Corrency,1);
+		sendKeys(TourFrom, "2018-09-12");
+		sendKeys(TourTo, "2018-09-12");
+		sendKeys(TourIncludes, "300");
+		sendKeys(TourDes, "3");
 		sendKeys(ImagePost, "C:\\\\Users\\\\iTelaSoft-User\\\\Downloads\\\\snowbo_images\\\\6.jpg");
 		sendKeys(AccoVideo, "https://www.youtube.com/watch?v=VGPi1zWtdeA");
 		click(SelectPlan);
@@ -63,9 +65,9 @@ public class PostAccomodationTest extends UIActions implements ProductElements {
 		click(freePlan);
 		click(SaveAcco);
 		waitForPageLoad();
-		accoValue = getSelector(accomodationTitle);
+		accoValue = getSelector(TourTitleValue);
 		assertTrue(elementExists(accoValue));
-		click(Accotab);
+		click(ToursTab);
 		waitForPageLoad();
 		assertTrue(elementExists(accoValue));
 		click(newsfeed);
@@ -78,10 +80,6 @@ public class PostAccomodationTest extends UIActions implements ProductElements {
 		
 		
 	}
-	
-	
-	
-	
 	
 	
 	

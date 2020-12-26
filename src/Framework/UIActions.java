@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -36,6 +37,19 @@ public class UIActions extends BrowserSetup {
 			waitForPageLoad();
 			fliuentWait(element);
 			driver.findElement(element).click();
+		} catch (NoSuchElementException exception) {
+			fail(Constant.errorMessage + element);
+		}
+	}
+	
+	public void clickWithDropDown(By element,String value) {
+		try {
+			waitForPageLoad();
+			fliuentWait(element);
+			
+			driver.findElement(element).click();
+			sendKeys(element, value);
+			selectDropdown(element, 1);
 		} catch (NoSuchElementException exception) {
 			fail(Constant.errorMessage + element);
 		}
@@ -83,6 +97,7 @@ public class UIActions extends BrowserSetup {
 	 */
 	public List<WebElement> locateElements(By locator) {
 		List<WebElement> elements = new ArrayList<>();
+		
 		try {
 			elements = driver.findElements(locator);
 		} catch (Exception e) {
@@ -198,6 +213,25 @@ public class UIActions extends BrowserSetup {
 	public void fail(String errorMessage) {
 		System.out.println("[-FAILED BECAUSE OF] " + errorMessage);
 		Assert.assertTrue(false);
+	}
+	
+	
+	public boolean isVisible(By element) {
+		boolean isVisible = false;
+		try {
+			boolean ElementisDisplayed = driver.findElement(element).isDisplayed();
+			isVisible = ElementisDisplayed;
+		} catch (Exception e) {
+			fail(Constant.errorMessage + element);
+		}
+		return isVisible;
+	}
+	
+	
+	public void selectDropdown(By Selector,int Index)
+	{
+		Select select = new Select(driver.findElement(Selector));
+		select.selectByIndex(Index);
 	}
 
 }

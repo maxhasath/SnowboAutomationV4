@@ -16,20 +16,20 @@ import Framework.UIActions;
 
 public class DeleteActivityTest extends UIActions implements ProductElements {
 
-	BrowserSetup browser = new BrowserSetup();
-	Constant constant = new Constant();
+	
 	StatusUpdateNewsfeedTest statusUpdateNewsfeedTest;
 	By postSelector;
 
 	@BeforeTest
 	public void SetupBrowser() throws Exception {
 		this.statusUpdateNewsfeedTest = new StatusUpdateNewsfeedTest();
-		this.statusUpdateNewsfeedTest.setupBrowser();
+		//this.statusUpdateNewsfeedTest.setupBrowser();
+		this.statusUpdateNewsfeedTest.statUpdate();
 	}
 
 	@Test
 	public void statUpdate() throws Exception {
-		this.statusUpdateNewsfeedTest.statUpdate();
+	
 		WebElement postedElement = locateElement(By.xpath(".//*[@id='activity-feed']/div/div[div[1]/div[2]/p[text()='"
 				+ this.statusUpdateNewsfeedTest.randomValue + "']]"));
 		assertNotNull(postedElement);

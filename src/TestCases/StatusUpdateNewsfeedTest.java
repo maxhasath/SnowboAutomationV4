@@ -15,8 +15,8 @@ import Framework.UIActions;
 
 public class StatusUpdateNewsfeedTest extends UIActions implements ProductElements {
 
-	BrowserSetup browser = new BrowserSetup();
-	Constant constant = new Constant();
+	//BrowserSetup browser = new BrowserSetup();
+	//Constant constant = new Constant();
 	LoginTest login;
 	By postValue;
 	String randomValue;
@@ -24,16 +24,17 @@ public class StatusUpdateNewsfeedTest extends UIActions implements ProductElemen
 	WebDriverWait wait;
 
 	@BeforeTest
-	public void setupBrowser() {
+	public void setupBrowser() throws InterruptedException {
 		login = new LoginTest();
-		this.browser = login.browser;
+		//this.browser = login.browser;
 		this.wait = login.wait;
+		login.login_MP10327();
 	}
 
 	@Test
 	public void statUpdate() throws Exception {
 
-		login.login_MP10327();
+		
 		randomValue = getRandomValue();
 		postValue = getSelector(randomValue);
 		sendKeys(statusbar, randomValue);
@@ -41,7 +42,7 @@ public class StatusUpdateNewsfeedTest extends UIActions implements ProductElemen
 		waitForPageLoad();
 		assertTrue(elementExists(postValue));
 		click(dropdown);
-		click(myprofile);
+		click(myprofile2);
 		waitForPageLoad();
 		assertTrue(elementExists(postValue));
 

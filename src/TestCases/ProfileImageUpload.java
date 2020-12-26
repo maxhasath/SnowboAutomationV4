@@ -19,8 +19,8 @@ import Framework.UIActions;
 public class ProfileImageUpload extends UIActions implements ProductElements {
 
 	
-	BrowserSetup browser = new BrowserSetup();
-	Constant constant = new Constant();
+	//BrowserSetup browser = new BrowserSetup();
+	//Constant constant = new Constant();
 	LoginTest login;
 
 	
@@ -28,11 +28,12 @@ public class ProfileImageUpload extends UIActions implements ProductElements {
 	WebDriverWait wait;
 	
 	@BeforeClass
-	public void SetupBrowser()
+	public void SetupBrowser() throws InterruptedException
 	{
 	        login = new LoginTest();
-	        this.browser = login.browser;
+	        //this.browser = login.browser;
 	        this.wait = login.wait;
+	        login.login_MP10327();
 	}
 	
 	
@@ -40,13 +41,14 @@ public class ProfileImageUpload extends UIActions implements ProductElements {
 	public void statUpdate() throws Exception {
 		
 		
-		login.login_MP10327();
+		
 		click(dropdown);
-		click(myprofile);
+		click(myprofile2);
 		waitForPageLoad();
 		WebElement imgElement = driver.findElement(proimage);
 		String imgSrcValueBefore = imgElement.getAttribute("src");
-		sendKeys(proimageUpload, "C:\\Users\\iTelaSoft-User\\Downloads\\snowbo_images\\expected.jpg");
+		sendKeys(proimageUpload, "C:\\Users\\iTelaSoft-User\\Downloads\\snowbo_images\\Proimg.jpg");
+		
 		waitForPageLoad();
 		WebElement imgElement1 = driver.findElement(proimage);
 		String imgSrcValueAfter = imgElement1.getAttribute("src");

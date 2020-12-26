@@ -3,8 +3,8 @@ package Element;
 public class Constant {
 	public static final String errorMessage = "no such element exception: ";
 	
-	public static final String InstructorEmail = "maxhasath@gmail.com";
-	public static final String InstructorPassword = "qwerty";
+	public static final String InstructorEmail = "keshawa.tillekeratne+1@itelasoft.com";
+	public static final String InstructorPassword = "123456";
 	
 	public static final String ResortEmail = "deadshot.praveen@gmail.com";
 	public static final String ResortPassword = "123456";
